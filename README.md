@@ -4,6 +4,8 @@ A template repository for the inaugural QDX hackathon at the University of Melbo
 ## Objective
 Make the fastest possible neural network implementation.
 We will be focused only on *inference* (you do not need to train the neural network).
+
+## Template repository description
 We have provided a `weights_and_biases.txt` file, and a test dataset (under `tensors`). 
 We have encoded each of our test files as a 225 1-D tensor so you can pass them directly to the input layer of your neural network. The filename of each input tensor is the label of the underlying image.
 
@@ -12,8 +14,11 @@ To read more about bitmaps, see [here](https://en.wikipedia.org/wiki/Bitmap).
 
 The weights (and biases) file encodes a neural network that has been trained to classify these letters with an accuracy of 100%.
 
-The architecture is summarised below.
 You only need to implement the forward ("inference") pass of the neural network. But you need to implement it very peformantly!
+
+## Example PyTorch implementation
+We have provided an example PyTorch implementation (under `example`) so you can see how the weights can be loaded, and inference performed on the test dataset. It is assuredly not an ideal implementation, and we expect you to produce better implementations!
+
 
 ## Background on neural networks
 
@@ -94,6 +99,3 @@ The layers are named fc1 to fc7 for each of the layers of the neural network.
 
 A newline seperates the header from the weights themselves. The actual weight or bias values are listed in a single row seperated by commas. Weight matrices are provided in row-major order, and biases are single dimensional rows.
 
-
-## Example PyTorch implementation
-We have provided an example PyTorch implementation so you can see how the weights can be loaded, and inference performed on the test dataset. It is assuredly not an ideal implementation, and we expect you to produce better implementations!
