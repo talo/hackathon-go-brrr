@@ -32,6 +32,18 @@ The dimensions of the weight matrix are determined by the number of neurons in t
 A bias vector is associated with each layer of neurons except the input layer.
 Each entry in a bias vector corresponds to a single neuron in the layer, representing the bias added to the weighted sum of inputs for that neuron.
 
+## How is a layer calculated?
+For a given layer \( l \), the output \( \mathbf{h}^{(l)} \) is computed as:
+
+\[ \mathbf{h}^{(l)} = f(\mathbf{W}^{(l)} \mathbf{h}^{(l-1)} + \mathbf{b}^{(l)}) \]
+
+Where:
+
+- \( \mathbf{W}^{(l)} \) is the weight matrix for layer \( l \).
+- \( \mathbf{h}^{(l-1)} \) is the output (or activation) from the previous layer (or the input data if it’s the first layer).
+- \( \mathbf{b}^{(l)} \) is the bias vector for layer \( l \).
+- \( f \) is the activation function (e.g., ReLU, sigmoid, tanh).
+
 ## Your task
 1. Read the `weights_and_biases.txt` file. For more details on how to read the file please see 
 
