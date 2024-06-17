@@ -7,7 +7,7 @@ We will be focused only on *inference* (you do not need to train the neural netw
 
 ## Template repository description
 We have provided a `weights_and_biases.txt` file, and a test dataset (under `tensors`). 
-We have encoded each of our test files as a 225 1-D tensor so you can pass them directly to the input layer of your neural network. The filename of each input tensor is the label of the underlying image.
+We have encoded each of our test files as a 1-D tensor with 225 elements (15x15 pixels) so you can pass them directly to the input layer of your neural network. The filename of each input tensor is the label of the underlying image.
 
 The underlying images are saved in `bitmaps`. The test dataset is a collection of bitmaps of letters.
 To read more about bitmaps, see [here](https://en.wikipedia.org/wiki/Bitmap).
@@ -32,17 +32,18 @@ The dimensions of the weight matrix are determined by the number of neurons in t
 A bias vector is associated with each layer of neurons except the input layer.
 Each entry in a bias vector corresponds to a single neuron in the layer, representing the bias added to the weighted sum of inputs for that neuron.
 
-## How is a layer calculated?
-For a given layer \( l \), the output \( \mathbf{h}^{(l)} \) is computed as:
+## How is output for each layer calculated?
+For a given layer $l$, the output $\mathbf{h}^{(l)}$ is computed as:
 
-\[ \mathbf{h}^{(l)} = f(\mathbf{W}^{(l)} \mathbf{h}^{(l-1)} + \mathbf{b}^{(l)}) \]
+$\mathbf{h}^{(l)} = f(\mathbf{W}^{(l)} \mathbf{h}^{(l-1)} + \mathbf{b}^{(l)})$
 
 Where:
 
-- \( \mathbf{W}^{(l)} \) is the weight matrix for layer \( l \).
-- \( \mathbf{h}^{(l-1)} \) is the output (or activation) from the previous layer (or the input data if it’s the first layer).
-- \( \mathbf{b}^{(l)} \) is the bias vector for layer \( l \).
-- \( f \) is the activation function (e.g., ReLU, sigmoid, tanh).
+- $\mathbf{W}^{(l)}$ is the weight matrix for layer $l$.
+- $\mathbf{h}^{(l-1)}$ is the output (or activation) from the previous layer (or the input data if it’s the first layer).
+- $\mathbf{b}^{(l)}$ is the bias vector for layer $l$.
+- $f$ is the activation function (e.g., ReLU).
+
 
 ## Your task
 1. Read the `weights_and_biases.txt` file. For more details on how to read the file please see 
