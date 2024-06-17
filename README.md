@@ -2,30 +2,18 @@
 A template repository for the inaugural QDX hackathon at the University of Melbourne!
 
 ## Objective
-
 Make the fastest possible neural network implementation.
 We will be focused only on *inference* (you do not need to train the neural network).
-We have provided a weights.csv file, and a test dataset (under `data_set`). The test dataset is a collection of bitmaps of letters.
+We have provided a `weights_and_biases.txt` file, and a test dataset (under `tensors`). 
+We have encoded each of our test files as a 225 1-D tensor so you can pass them directly to the input layer of your neural network. The filename of each input tensor is the label of the underlying image.
+
+The underlying images are saved in `bitmaps`. The test dataset is a collection of bitmaps of letters.
 To read more about bitmaps, see [here](https://en.wikipedia.org/wiki/Bitmap).
 
 The weights (and biases) file encodes a neural network that has been trained to classify these letters with an accuracy of 100%.
 
 The architecture is summarised below.
-You only need to implement the forward ("inference") pass of the neural network.
-
-## Your task
-1. Read the `weights.csv` file.
-2. Perform inference to classify each of the bitmaps within the `data_set` directory. Please note that the images themselves are provided as a convenience; your classification should be performed directly from the bitmaps.
-3. Write the results to the `results.csv` file, which should be structued like so.
-
-    ```csv
-    image_number, guess
-    1, A
-    2, B
-    3, F
-    4, J
-    ```
-    We will be using an automatic grader for these results, so please ensure that your neural network implementation looks at it exactly.
+You only need to implement the forward ("inference") pass of the neural network. But you need to implement it very peformantly!
 
 ## Background on neural networks
 
@@ -33,12 +21,42 @@ A neural network consists of multiple layers, including an input layer, several 
 
 Each layer has a specific number of units (or neurons) that define the dimensions of the weight matrices and bias vectors connecting the layers.
 A weight matrix connects neurons from one layer to the next.
-
 Each entry in a weight matrix represents the strength of the connection between a neuron in the previous layer and a neuron in the next layer.
 The dimensions of the weight matrix are determined by the number of neurons in the input layer and the output layer of the connection.
 
 A bias vector is associated with each layer of neurons except the input layer.
 Each entry in a bias vector corresponds to a single neuron in the layer, representing the bias added to the weighted sum of inputs for that neuron.
+
+## Your task
+1. Read the `weights_and_biases.txt` file. For more details on how to read the file please see 
+
+2. Perform inference to classify each of the tensors (corresponding to a letter) within the `tensors` directory.
+
+3. Write the results to the `results.csv` file, which should be structued like so. 
+You can use this lookup table to output the guesses from your neural net:
+    
+    | Index | Letter | Index | Letter | Index | Letter | Index | Letter | Index | Letter | Index | Letter | Index | Letter |
+    |-------|--------|-------|--------|-------|--------|-------|--------|-------|--------|-------|--------|-------|--------|
+    | 0     | A      | 1     | a      | 2     | B      | 3     | b      | 4     | C      | 5     | c      | 6     | D      |
+    | 7     | d      | 8     | E      | 9     | e      | 10    | F      | 11    | f      | 12    | G      | 13    | g      |
+    | 14    | H      | 15    | h      | 16    | I      | 17    | i      | 18    | J      | 19    | j      | 20    | K      |
+    | 21    | k      | 22    | L      | 23    | l      | 24    | M      | 25    | m      | 26    | N      | 27    | n      |
+    | 28    | O      | 29    | o      | 30    | P      | 31    | p      | 32    | Q      | 33    | q      | 34    | R      |
+    | 35    | r      | 36    | S      | 37    | s      | 38    | T      | 39    | t      | 40    | U      | 41    | u      |
+    | 42    | V      | 43    | v      | 44    | W      | 45    | w      | 46    | X      | 47    | x      | 48    | Y      |
+    | 49    | y      | 50    | Z      | 51    | z      |
+
+    This is how we expect your csv to be structured:
+    ```csv
+    image_number, guess
+    1, A
+    2, B
+    3, F
+    4, J
+    ```
+
+4. As this is a small dataset and a small neural network, we would like you to run the inference 1000 times and write each prediction to a file named `predictions_{iteration_number}.csv`. We will be verifying that your code performs the inference each time, so please don't cheat!
+
 
 ## Neural network architecture
 
@@ -54,10 +72,28 @@ Each entry in a bias vector corresponds to a single neuron in the layer, represe
 
 Between the input and the hidden layers
 , `ReLU` was the activation function used.
-For the output layer, `softmax` is the activation function.
+For the output
+ layer, `softmax` is the activation function.
+
+## Diagram
+![Sample Image](./neural_network_diagram.png)
+
 
 ## Format of the weights.csv file
 
-Each section begins with a header indicating the type and layer index. For example, W[0] for the weights of the first layer and b[0] for the biases of the first layer. 
+Each section begins with a header indicating the type and layer index, structured like
+so:
+```
+fc1.weight:
+weight, weight, weight, weight, ...
+fc1.bias:
+bias, bias, bias, ...
+...
+```
+The layers are named fc1 to fc7 for each of the layers of the neural network.
 
-After each header, there is a separator line made of dashes (-----) to separate the header from the data. The actual weight or bias values are listed in rows. Weight matrices are provided in row-major order (and each section corresponds to the dimensions of that layer), and bias vectors are provided as a single column of values.
+A newline seperates the header from the weights themselves. The actual weight or bias values are listed in a single row seperated by commas. Weight matrices are provided in row-major order, and biases are single dimensional rows.
+
+
+## Example PyTorch implementation
+We have provided an example PyTorch implementation so you can see how the weights can be loaded, and inference performed on the test dataset. It is assuredly not an ideal implementation, and we expect you to produce better implementations!
