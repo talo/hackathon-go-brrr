@@ -19,7 +19,6 @@ You only need to implement the forward ("inference") pass of the neural network.
 ## Example PyTorch implementation
 We have provided an example PyTorch implementation (under `example`) so you can see how the weights can be loaded, and inference performed on the test dataset. It is assuredly not an ideal implementation, and we expect you to produce better implementations!
 
-
 ## Background on neural networks
 
 A neural network consists of multiple layers, including an input layer, several hidden layers, and an output layer.
@@ -33,17 +32,16 @@ A bias vector is associated with each layer of neurons except the input layer.
 Each entry in a bias vector corresponds to a single neuron in the layer, representing the bias added to the weighted sum of inputs for that neuron.
 
 ## How is output for each layer calculated?
-For a given layer $l$, the output $\mathbf{h}^{(l)}$ is computed as:
+For a given layer $l$, the output $\mathbf{h}^{(l+1)}$ is computed as:
 
-$\mathbf{h}^{(l)} = f(\mathbf{W}^{(l)} \mathbf{h}^{(l-1)} + \mathbf{b}^{(l)})$
+$\mathbf{h}^{(l+1)} = f(\mathbf{W}^{(l+1)} \mathbf{h}^{(l)} + \mathbf{b}^{(l+1)})$
 
 Where:
 
-- $\mathbf{W}^{(l)}$ is the weight matrix for layer $l$.
-- $\mathbf{h}^{(l-1)}$ is the output (or activation) from the previous layer (or the input data if it’s the first layer).
-- $\mathbf{b}^{(l)}$ is the bias vector for layer $l$.
+- $\mathbf{W}^{(l+1)}$ is the weight matrix for layer $l + 1$ (the next layer).
+- $\mathbf{h}^{(l)}$ is the output (or activation) from the previous layer (or the input data if it’s the first layer).
+- $\mathbf{b}^{(l + 1)}$ is the bias vector for layer $l + 1$ (the next layer).
 - $f$ is the activation function (e.g., ReLU).
-
 
 ## Your task
 1. Read the `weights_and_biases.txt` file. For more details on how to read the file please see 
@@ -52,6 +50,9 @@ Where:
 
 3. Write the results to the `results.csv` file, which should be structued like so. 
 You can use this lookup table to output the guesses from your neural net:
+The output classes are Aa-Zz, so A-Z and a-z interleaved. So, for example, the first four classes (in order) are A, a, B and B. You can see this in the lookup table we have provided below.
+The output layer of the neural network is a 52 element 1-D tensor. Each element within the tensor is the probability of the input image being
+*that* output class. To get the index for the lookup table you need to get the `argmax`, which is the index of the element with the highest probability within your output tensor.
     
     | Index | Letter | Index | Letter | Index | Letter | Index | Letter | Index | Letter | Index | Letter | Index | Letter |
     |-------|--------|-------|--------|-------|--------|-------|--------|-------|--------|-------|--------|-------|--------|
