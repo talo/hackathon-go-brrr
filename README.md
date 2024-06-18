@@ -8,8 +8,9 @@ We will be focused only on *inference* (you do not need to train the neural netw
 ## Template repository description
 We have provided a `weights_and_biases.txt` file, and a test dataset (under `tensors`). 
 We have encoded each of our test files as a 1-D tensor with 225 elements (15x15 pixels) so you can pass them directly to the input layer of your neural network. The filename of each input tensor is the label of the underlying image.
+You should perform inference on the tensors directly.
 
-The underlying images are saved in `bitmaps`. The test dataset is a collection of bitmaps of letters.
+As a convenience, the underlying images are saved in `bitmaps`. The test dataset is a collection of bitmaps of letters.
 To read more about bitmaps, see [here](https://en.wikipedia.org/wiki/Bitmap).
 
 The weights (and biases) file encodes a neural network that has been trained to classify these letters with an accuracy of 100%.
