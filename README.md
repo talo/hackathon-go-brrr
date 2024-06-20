@@ -51,7 +51,7 @@ Where:
 
 3. Write the results to the `results.csv` file, which should be structued like so. 
 You can use this lookup table to output the guesses from your neural net:
-The output classes are Aa-Zz, so A-Z and a-z interleaved. So, for example, the first four classes (in order) are A, a, B and B. You can see this in the lookup table we have provided below.
+The output classes are Aa-Zz, so A-Z and a-z interleaved. So, for example, the first four classes (in order) are A, a, B and b. You can see this in the lookup table we have provided below.
 The output layer of the neural network is a 52 element 1-D tensor. Each element within the tensor is the probability of the input image being
 *that* output class. To get the index for the lookup table you need to get the `argmax`, which is the index of the element with the highest probability within your output tensor.
     
