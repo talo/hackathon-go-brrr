@@ -45,7 +45,7 @@ Where:
 - $f$ is the activation function (e.g., ReLU).
 
 ## Your task
-1. Read the `weights_and_biases.txt` file. For more details on how to read the file please see 
+1. Read the `weights_and_biases.txt` file. For more details on the structure of the input file, please see below.
 
 2. Perform inference to classify each of the tensors (corresponding to a letter) within the `tensors` directory.
 
