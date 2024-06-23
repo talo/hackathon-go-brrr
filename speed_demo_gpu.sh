@@ -8,7 +8,7 @@ fi
 weights_and_biases=$1
 input_tensor_dir=$2
 
-binary="speed_cpu"
+binary="speed_gpu"
 
 if [ ! -f "$binary" ]; then
     echo "Binary $binary not found!"
