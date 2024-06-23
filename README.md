@@ -45,11 +45,20 @@ Where:
 - $f$ is the activation function (e.g., ReLU).
 
 ## Your task
+
+ We have two scripts; `speed_demo_cpu.sh` and/or `speed_demo_gpu.sh` that will kick of your project. We will expect your binary/your executable to be named `speed_cpu` or `speed_gpu` and take two parameters in order, a relative path to the `weights_and_biases.txt` and a relative path to the input tensor directory.
+
+ For more details on the input structure, please check out the `speed_demo_cpu.sh` and the `speed_demo_gpu.sh` file.
+
+Our automated grading script will replace the `tensors` directory with files with the same naming scheme `{number}out.txt` (but many more than the 52 initially provided). But your binary/exectuable **should** not make assumptions about how many files are in the tensors directory.
+
+The original bitmaps have been converted to tensors, which is the input of the neural net, for simplicity. The bitmaps are provided merely as a convenience and are not an input.
+
 1. Read the `weights_and_biases.txt` file. For more details on the structure of the input file, please see below.
 
 2. Perform inference to classify each of the tensors (corresponding to a letter) within the `tensors` directory.
 
-3. Write the results to the `results.csv` file, which should be structued like so. 
+3. Write the results to the `results.csv` file, which should be structured like so. 
 You can use this lookup table to output the guesses from your neural net:
 The output classes are Aa-Zz, so A-Z and a-z interleaved. So, for example, the first four classes (in order) are A, a, B and b. You can see this in the lookup table we have provided below.
 The output layer of the neural network is a 52 element 1-D tensor. Each element within the tensor is the probability of the input image being
@@ -76,7 +85,6 @@ The output layer of the neural network is a 52 element 1-D tensor. Each element 
     ```
 
 4. As this is a small dataset and a small neural network, we would like you to run the inference 1000 times and write each prediction to a file named `predictions_{iteration_number}.csv`. We will be verifying that your code performs the inference each time, so please don't cheat!
-
 
 ## Neural network architecture
 
