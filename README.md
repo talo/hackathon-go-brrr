@@ -46,7 +46,7 @@ Where:
 
 ## Your task
 
- We have two scripts; `speed_demo_cpu.sh` and/or `speed_demo_gpu.sh` that will kick of your project. We will expect your binary/your executable to be named `speed_cpu` or `speed_gpu` and take two parameters in order, a relative path to the `weights_and_biases.txt` and a relative path to the input tensor directory (`input_tensors`).
+ We have two scripts; `speed_demo_cpu.sh` and/or `speed_demo_gpu.sh` that will kick off your project. We will expect your binary/your executable to be named `speed_cpu` or `speed_gpu` and take two parameters in order, a relative path to the `weights_and_biases.txt` and a relative path to the input tensor directory (`input_tensors`).
 
  For more details on the input structure, please check out the `speed_demo_cpu.sh` and the `speed_demo_gpu.sh` file.
 
